@@ -10,7 +10,7 @@ package helloworld
 import (
 	"encoding/json"
 	"encoding/xml"
-	"fmt"
+	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -23,7 +23,7 @@ type helloworldXml struct {
 }
 
 type helloworldJson struct {
-	Message string `json:"message""`
+	Message string `json:"message"`
 	Time    string `json:"time"`
 }
 
@@ -36,7 +36,7 @@ func HelloWorld(rw http.ResponseWriter, r *http.Request) {
 		}
 		err := xml.NewEncoder(rw).Encode(hw)
 		if err != nil {
-			fmt.Println(err)
+			log.Print(err)
 		}
 	} else {
 		rw.Header().Set("Content-Type", "application/json")
@@ -46,7 +46,7 @@ func HelloWorld(rw http.ResponseWriter, r *http.Request) {
 		}
 		err := json.NewEncoder(rw).Encode(hw)
 		if err != nil {
-			fmt.Println(err)
+			log.Print(err)
 		}
 	}
 
